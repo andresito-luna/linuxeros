@@ -1,0 +1,80 @@
+.bodi {
+    background-color: rgb(238,238,238);
+    justify-content: center;
+}
+
+.contenedor {
+    background-color: rgb(34,40,49);
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    grid-template-areas: "header header header"
+        "contenido contenido contenido"
+        "noticia1 noticia2 noticia3"
+        "futer futer futer";
+
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+
+.contenedor>div,
+.contenedor .header,
+.contenedor .futer,
+.contenedor .contenido {
+
+
+
+    border-color: black;
+    border-width: thick;
+    border-style: double;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(255,211,105);
+    justify-content: center;
+
+}
+
+.header {
+    grid-area: header;
+
+}
+
+.contenido {
+    grid-area: contenido;
+
+}
+
+.noticia1 {
+    grid-area: noticia1;
+}
+
+.noticia2 {
+    grid-area: noticia2;
+}
+
+.noticia3 {
+    grid-area: noticia3;
+}
+
+.futer {
+    grid-area: futer;
+}
+
+@media screen and (max-width: 800px) {
+    .contenedor {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, auto);
+        grid-template-areas: "header header"
+            "contenido contenido"
+            "noticia1 noticia2"
+            "noticia3 noticia3"
+            "futer futer";
+    }
+}
