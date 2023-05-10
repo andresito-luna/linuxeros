@@ -23,30 +23,37 @@
     border-radius: 5px;
 
 }
+.futer{  border-color: black;
+    border-width: thick;
+    border-style: double;
+    padding: 5px;
+        background-color: rgb(255, 211, 105);}
 
 
-.contenedor>div,
-.contenedor .header,
-.contenedor .futer,
-.contenedor .contenido {
-
-
-
+.header {
+    grid-area: header;
+    display: flex;
+    flex-wrap: nowrap;
+    position: sticky;
+    align-items: center;
     border-color: black;
     border-width: thick;
     border-style: double;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 5px;
     background-color: rgb(255, 211, 105);
     justify-content: center;
 
 }
 
-.header {
-    grid-area: header;
-    display: flex;
+.logo {width: 50pxpx; 
+    height: 50px;
 
 }
+.logo:hover {
+    transition: 0.3s;
+    transform: scale(1.2);
+    opacity: 0.7;}
+
 
 .contenido {
     grid-area: contenido;
@@ -68,24 +75,14 @@
 .futer {
     grid-area: futer;
 }
-
-@media screen and (max-width: 800px) {
-    .contenedor {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, auto);
-        grid-template-areas: "header header"
-            "contenido contenido"
-            "noticia1 noticia2"
-            "noticia3 noticia3"
-            "futer futer";
-    }
-}
-
- /* Estilo de la lista */
- ul {
+/* Estilo de la lista */
+ul {
     margin: 0px;
     padding: 0px;
     display: flex;
+    align-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Estilo de los elementos li */
@@ -100,11 +97,11 @@ ul li a {
     display: block;
     text-decoration: none;
     position: relative;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: lightgrey;
+ 
+    color:  rgb(34, 40, 49);
     font-size: 12px;
     padding: 6px;
-    transition: 0.4s;
+    transition: 0.2s;
 
 }
 
@@ -123,17 +120,34 @@ ul li a:hover {
     filter: blur(0px);
 }
 
-/* Al ENTRAR con el mouse sobre a link dentro de la lista */
-ul li a:before {
-    content: "";
-    position: absolute; /*Respecto de la caja del link*/
-    top: 0px;
-    left: 0px;
-    /*background: rgb(9, 28, 233);*/
-    width: 100%;        /*Respecto de la caja del link*/
-    height: 100%;       /*Respecto de la caja del link*/
-    transition: 0.4s;
-    transform-origin: right;
-    transform: scaleX(1.1);  /* Zoom */
-    z-index: -1;       /* Por detrás del texto del link*/
+
+@media screen and (max-width: 800px) {
+    .contenedor {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, auto);
+        grid-template-areas: "header header"
+            "contenido contenido"
+            "noticia1 noticia2"
+            "noticia3 noticia3"
+            "futer futer";
+    }
+
 }
+
+@media screen and (max-width: 300px) {
+    .contenedor {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas: "header"
+            "contenido"
+            "noticia1"
+            "noticia2"
+            "noticia3"
+            "futer";
+            .logo{width: 0px;
+            height: 0px;}
+    }
+
+}
+
+ 
