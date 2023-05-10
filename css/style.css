@@ -4,11 +4,9 @@
 }
 
 .contenedor {
-    background-color: rgb(238, 238, 238);
-    width: 90%;
-    margin: 20px auto;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(4, auto);
     gap: 10px;
     grid-template-areas:
@@ -16,12 +14,18 @@
         "contenido contenido contenido"
         "noticia1 noticia2 noticia3"
         "futer futer futer";
-
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+    margin: 20px auto;
     justify-content: center;
     padding: 20px;
     border-radius: 5px;
+    grid-auto-flow: column;
+   
 
 }
+.foto {width: 400px;
+height: auto;}
 
 .contenedorvideos {
     background-color: rgb(238, 238, 238);
@@ -44,16 +48,20 @@
     padding: 20px;
     border-radius: 5px;
 }
-.video {border-color: black;
-    
+
+.video {
+
+    border-color: black;
+
     border-width: 2px;
-    border-style:dashed;
+    border-style: dashed;
     padding: 10px;
     background-color: rgba(255, 210, 105, 0.25);
     border-radius: 15px;
-    
-    
+
+
 }
+
 .futer {
     border-color: black;
     border-width: thick;
@@ -99,6 +107,7 @@
 
 .noticia1 {
     grid-area: noticia1;
+    
 }
 
 .noticia2 {
