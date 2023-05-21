@@ -65,12 +65,41 @@
     }
 
 .futer {
-    border-color: black;
+    /* border-color: rgb(34, 40, 49);
     border-width: thick;
-    border-style: double;
-    padding: 5px;
-    background-color: rgb(255, 211, 105);
+    border-style: double; */
+    border-radius: 15px;
+    padding: 25px;
+    background-color: rgb(57, 62, 70);
+
 }
+
+.futer__flexbox {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.futer__logo__repo > a > img {
+    width: 50px;
+}
+
+
+.futer__grupo {
+    color: rgb(238, 238, 238);
+    font-weight: bolder;
+    font-style: oblique;
+}
+
+
+.futer__logo_codo_a_codo > a > img {
+    width: 115px;
+    border-radius: 12px;
+}
+
+
+
 
 
 .header {
