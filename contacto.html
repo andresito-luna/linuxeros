@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>cine<contacto>code</title>
 </head>
 
@@ -46,7 +47,44 @@
             </ul>
         </header> -->
 
-     
+        <H1>Contacto</H1>
+        <form action="https://formsubmit.co/80b2fece0f0c4e17f6f1aa7a27772374" method="POST">
+            <div class="form-row">
+              <div class="col">
+                <label for="contacto__nombre"></label>
+                <input name="contacto__nombre" id="contacto__nombre" type="text" class="form-control" placeholder="Nombre" required>
+              </div>
+              <div class="col">
+                <label for="contacto__apellido"></label>
+                <input name="contacto__apellido" id="contacto__apellido" type="text" class="form-control" placeholder="Apellido" required>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="email"></label>
+                  <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="asunto"></label>
+                  <input name="asunto" type="text" class="form-control" id="asunto" placeholder="Asunto" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1"></label>
+                <textarea name="exampleFormControlTextarea1" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Tu mensaje" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+
+            <input type="hidden" name="_next" value="http://192.168.0.104:5501/contacto.html">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Nuevo email desde linuxeros!">
+            <input type="hidden" name="_autoresponse" value="Recibimos tu mensaje, aqui una copia del mismo.">
+
+          </form>
+
+        <!-- ===FOOTER=== -->
 
         <footer class="futer">
             <div class="futer__flexbox">
@@ -70,6 +108,12 @@
         </footer>
     </div>
 
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
