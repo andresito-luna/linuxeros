@@ -1,5 +1,14 @@
 
-    fetch("https://online-movie-database.p.rapidapi.com/auto-complete?q=diablo", {
+
+const input = document.querySelector("#textoBuscar")
+const btn = document.querySelector("#boton")
+const refrescar = document.querySelector("#refrescar")
+let nombrePeli = ""
+
+const llamada = () => {nombrePeli = input.value
+    
+   
+    fetch(`https://online-movie-database.p.rapidapi.com/auto-complete?q=${nombrePeli}`, {
 
         method: 'GET',
         headers: {
@@ -25,14 +34,17 @@
                busqueda.innerHTML += pelicula //inserta la lista en el div con el id busqueda
             
             
-            
+         
             
             })
         })
+        input.value=""
+    }
+   
+      
+        btn.addEventListener("click", llamada)
+        refrescar.addEventListener("click", function(){location.reload()})
 
+      
 
-        .catch(err => {
-            console.error(err);
-        });
-
-console.log("gil")
+        
