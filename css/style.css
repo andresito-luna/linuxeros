@@ -48,7 +48,7 @@ a{
 .contenedor {
 
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
     gap: 10px;
     grid-template-areas:
@@ -250,7 +250,7 @@ ul li a:hover {
 
     margin: 20px auto;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     grid-template-rows: repeat(3, auto);
     gap: 10px;
     grid-template-areas:
