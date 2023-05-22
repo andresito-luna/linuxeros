@@ -243,6 +243,40 @@ ul li a:hover {
     opacity: 1;
     filter: blur(0px);
 }
+/* css para lo que traigo de la API*/
+.contenedorbusqueda {
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    grid-template-areas:
+        "header"
+        "busc"
+     "futer";
+
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+.busc{display: grid;
+  
+    justify-content: center;
+}
+.buschijo {border-color: black;
+    border-width: 2px;
+    border-style: dashed;
+    padding: 10px;
+    background-color: rgba(255, 210, 105, 0.25);
+    border-radius: 15px;
+   
+    width: 99;
+  
+
+}
 
 
 @media screen and (max-width: 800px) {
