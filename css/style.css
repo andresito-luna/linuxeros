@@ -108,13 +108,9 @@ a{
     }
 
 .futer {
-    /* border-color: rgb(34, 40, 49);
-    border-width: thick;
-    border-style: double; */
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 25px;
     background-color: rgb(57, 62, 70);
-
 }
 
 .futer__flexbox {
@@ -128,11 +124,24 @@ a{
     width: 50px;
 }
 
+.futer__logo__repo > a > img:hover {
+    transition: 0.7s;
+    transform:rotate(360deg);
+}
 
 .futer__grupo {
     color: rgb(238, 238, 238);
     font-weight: bolder;
     font-style: oblique;
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.futer__grupo:hover {
+    box-shadow: inset 300px 0 0 0 #FFD369;
+    color: rgb(34, 40, 49);
 }
 
 
@@ -141,7 +150,10 @@ a{
     border-radius: 12px;
 }
 
-
+.futer__logo_codo_a_codo > a > img:hover {
+    transition: 0.5s;
+    transform: scale(1.3);
+}
 
 
 
@@ -197,7 +209,8 @@ a{
 }
 .noticia6 {
     grid-area: noticia6;
-}.noticia7 {
+}
+.noticia7 {
     grid-area: noticia7;
 }
 .noticia8 {
