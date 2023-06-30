@@ -16,6 +16,7 @@ conexion = pymysql.connect(
     
 )
 #-------------------------------------------------------------------
+@app.route('/consultar')
 def consultar_pelicula():
     try:
         cursor = conexion.cursor()
@@ -24,16 +25,21 @@ def consultar_pelicula():
         pelis = cursor.fetchone()
         cursor.close()
         
-        if pelis:
-            print(f"Encontramos {nombre}")
-            print(f"Nonmbre: {pelis[1]}")
-            print(f"Genero: {pelis[2]}")
-            print(f"Año: {pelis[3]}")
-            print(f"Stock: {pelis[4]}")
-        else:
-            print(f'No se que es "{nombre}"')
-    except pymysql.Error as e:
-            print("Error al consultar la peli")
+        response = []
+        
+        for peli in pelis:
+            response.append({
+                'IdPeliculas': peli[0],
+                'Nombre': peli[1],
+                'Genero': peli[2],
+                'anio': peli[3],
+                'Stock': peli[4],
+            })
+        return jsonify(response)
+                
+        
+    except:
+        return jsonify("erroooooor")
 
 #----------------------------------------------------------------------------
 @app.route('/listar')
