@@ -8,11 +8,11 @@ CORS(app)
 
 # Conexión a la base de datos
 conexion = pymysql.connect(
-    host="localhost",  # Cambiar por la dirección del servidor de la base de datos
+    host="codo-a-codo-linuxeros.clfcnl4qjyxz.sa-east-1.rds.amazonaws.com",  # Cambiar por la dirección del servidor de la base de datos
     port = 3306,        #este es el puerto que te asigna el xxamp
-    user="root",              # Cambiar por el nombre de usuario de la base de datos
-    password="",              # Cambiar por la contraseña de la base de datos
-    database="noventas videoclub"  # Cambiar por el nombre de la base de datos
+    user="andres",              # Cambiar por el nombre de usuario de la base de datos
+    password="LinUx&2023#",              # Cambiar por la contraseña de la base de datos
+    database="CineCode"  # Cambiar por el nombre de la base de datos
     
 )
 #-------------------------------------------------------------------
