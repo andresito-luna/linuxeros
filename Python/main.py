@@ -66,20 +66,21 @@ def listar_pelis():
         return jsonify("erroooooor")
 
 #----------------------------------------------------------------------------------
+@app.route("/agregar", methods=['POST'])
 def agregar_pelicula():
-    try:
-        nombre = input("Nombre de la Pelicula: ")
-        genero = input("Genero de la Pelicula: ")
-        año = int(input("Año de estreno: "))
-        stock = int(input("Cantidad de copias: "))
+    try:    
+        nombre = request.json.get("Nombre")
+        genero = request.json.get("Genero")
+        año = request.json.get("Año")
+        stock = request.json.get("Stock")
         cursor = conexion.cursor()
         cursor.execute("INSERT INTO peliculas (Nombre, Genero, Año, Stock) VALUES (%s,%s,%s,%s)", (nombre,genero,año,stock))
         conexion.commit()
         cursor.close()
 
-        print("se agrego la peli")
-    except pymysql.Error as e:
-        print("Error al agregar")
+        return agregar_pelicula(nombre,genero,año,stock)
+    except:
+        return jsonify("erroooooor")
 
 
 if __name__ == '__main__':
