@@ -1,6 +1,8 @@
 const URL = "http://127.0.0.1:5000/"
+const btn = document.querySelector("#boton")
 
-fetch(URL)
+const listar = () => {
+fetch(URL + "listar")
     .then(response => response.json())
     .then(pelis => {
         const list = pelis;
@@ -14,4 +16,6 @@ fetch(URL)
             contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
 
         })
-    })
+    })}
+
+    btn.addEventListener("click", listar)

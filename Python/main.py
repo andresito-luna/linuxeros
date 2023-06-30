@@ -36,7 +36,7 @@ def consultar_pelicula():
             print("Error al consultar la peli")
 
 #----------------------------------------------------------------------------
-@app.route('/')
+@app.route('/listar')
 def listar_pelis():
     try:
         cursor = conexion.cursor()
