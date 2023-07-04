@@ -36,11 +36,17 @@ const consultar = () => {
                 const genero = item.Genero
                 const año = item.anio
                 const stock = item.Stock
+
+                for (let [key, value] of Object.entries(item.Nombre)) {
                 if (nombrePeli == item.Nombre) {
                     const pelicula = `<tr><td>${id}</td><td>${nombre}</td><td>${genero}</td><td>${año}</td><td>${stock}</td></tr>`//genera una lista con los datos encontrados
                     contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
                 }
-
+                else {
+                    //const pelicula = '<tr><td>Morite</td></tr>'
+                    //contpelis.innerHTML += pelicula
+                }
+            }
 
             })
         })
