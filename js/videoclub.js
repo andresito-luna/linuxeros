@@ -1,4 +1,4 @@
-const URL = "codo-a-codo-linuxeros.clfcnl4qjyxz.sa-east-1.rds.amazonaws.com/"
+const URL = "http://127.0.0.1:5000/"
 const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
 const buscar = document.querySelector("#textoBuscar")
