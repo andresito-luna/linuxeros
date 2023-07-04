@@ -20,11 +20,9 @@ conexion = pymysql.connect(
 def consultar_pelicula():
     try:
         cursor = conexion.cursor()
-        nombre = input("Ingrese nombre de la pelicula: ")
-        cursor.execute("SELECT * FROM peliculas where Nombre =%s", (nombre,))
-        pelis = cursor.fetchone()
+        cursor.execute("SELECT * FROM peliculas")
+        pelis = cursor.fetchall()
         cursor.close()
-        
         response = []
         
         for peli in pelis:
