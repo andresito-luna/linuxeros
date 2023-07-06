@@ -1,6 +1,7 @@
-const URL = "4ndr35M00N.pythonanywhere.com/"
+const URL = "http://127.0.0.1:5000/"
 const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
+// const botonagregar = document.querySelector("#formulario")
 const buscar = document.querySelector("#textoBuscar")
 
 const listar = () => {
@@ -40,14 +41,23 @@ const consultar = () => {
 
 
 //------------------------------------------------------------------------
-const peliculasumar = {
-    nombre: document.querySelector("#agregarnombre").value,
-    genero: document.querySelector("#agregargenero").value,
-    año: parseInt(document.querySelector("#agregaraño").value),
-    stock: parseInt(document.querySelector("#agregarstock").value),
-}
+
 const agregar = () => {
-    nombrePeli = input.value
+
+
+    var nombrez = document.querySelector("#agregarnombre").value;
+    var generoz = document.querySelector("#agregargenero").value;
+    var anioz = parseInt(document.querySelector("#agregaraño").value);
+    var stockz = parseInt(document.querySelector("#agregarstock").value);
+
+    const peliculasumar = {
+        nombre: nombrez,
+        genero: generoz,
+        anio: anioz,
+        stock: stockz
+    };
+
+    console.log(peliculasumar)
 
     fetch(URL + "agregar", {
         method: 'POST',
@@ -56,17 +66,27 @@ const agregar = () => {
         },
         body: JSON.stringify(peliculasumar) // Ajusta 'data' con los datos que deseas enviar en la solicitud
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
+        .then(function (response) {
+            return response.json();
+        })
+
+
+        .then(function (data) {
+            alert('Pelicula agregada correctamente.');
+            // console.log(data)
             // Manejar la respuesta de la solicitud POST aquí
         })
-        .catch(error => {
+        .catch( function (error) {
+            alert('Error al agregar la pelicula.');
             // Manejar cualquier error que ocurra durante la solicitud
         });
-}
+};
+
+// botonagregar.addEventListener("submit", agregar);
+botonlistar.addEventListener("click", listar);
+botonbuscar.addEventListener("click", consultar);
 
 
-botonlistar.addEventListener("click", listar)
-botonbuscar.addEventListener("click", consultar)
-document.querySelector("#formulario").addEventListener('submit', agregar)
+
+
+

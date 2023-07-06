@@ -72,7 +72,7 @@ def agregar_pelicula():
     try:
         cursor = conexion.cursor()
         cursor.execute("""
-                    INSERT INTO productos(nombre, genero, año, stock)
+                    INSERT INTO peliculas 
                     VALUES(?,?,?,?) """,
                     (data['nombre'], data['genero'], data['año'], data['stock']))
         
@@ -81,8 +81,6 @@ def agregar_pelicula():
         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
     except:
         return jsonify({'error': 'Error al dar de alta el producto'}), 500
-    
-     
 
 
 if __name__ == '__main__':
