@@ -2,6 +2,7 @@ const URL = "http://127.0.0.1:5000/"
 const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
 // const botonagregar = document.querySelector("#formulario")
+
 const buscar = document.querySelector("#textoBuscar")
 
 const listar = () => {
@@ -41,23 +42,19 @@ const consultar = () => {
 
 
 //------------------------------------------------------------------------
+document.getElementById('formulario').addEventListener('submit', function(event) {event.preventDefault();
 
-const agregar = () => {
 
 
-    var nombrez = document.querySelector("#agregarnombre").value;
-    var generoz = document.querySelector("#agregargenero").value;
-    var anioz = parseInt(document.querySelector("#agregaraño").value);
-    var stockz = parseInt(document.querySelector("#agregarstock").value);
-
-    const peliculasumar = {
-        nombre: nombrez,
-        genero: generoz,
-        anio: anioz,
-        stock: stockz
+        const peliculasumar = {
+        IdPeliculas: document.querySelector("#agregarid").value,
+        Nombre: document.querySelector("#agregarnombre").value,
+        Genero: document.querySelector("#agregargenero").value,
+        anio: parseInt(document.querySelector("#agregaraño").value),
+        Stock: parseInt(document.querySelector("#agregarstock").value)
     };
 
-    console.log(peliculasumar)
+    
 
     fetch(URL + "agregar", {
         method: 'POST',
@@ -80,7 +77,9 @@ const agregar = () => {
             alert('Error al agregar la pelicula.');
             // Manejar cualquier error que ocurra durante la solicitud
         });
-};
+console.log(peliculasumar)
+document.getElementById('formulario').reset();
+});
 
 // botonagregar.addEventListener("submit", agregar);
 botonlistar.addEventListener("click", listar);

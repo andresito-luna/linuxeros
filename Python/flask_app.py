@@ -57,25 +57,34 @@ def listar_pelis():
                 'anio': peli[3],
                 'Stock': peli[4],
             })
+            print(peli)
         return jsonify(response)
                 
         
     except:
         return jsonify("erroooooor")
+    
 
 #----------------------------------------------------------------------------------
+
 @app.route("/agregar", methods=['POST'])
 def agregar_pelicula():
     data = request.get_json()
-    if 'nombre' not in data or 'genero' not in data or 'año' not in data:
+    if 'Nombre' not in data or 'Genero' not in data or 'anio' not in data:
         return jsonify({'error': 'Falta uno o más campos requeridos'}), 400
+    print(data)
+    print(data['IdPeliculas'])
+    print(data['Nombre'])
+    print(data['Genero'])
+    print(data['anio'])
+    print(data['Stock'])
     try:
         cursor = conexion.cursor()
         cursor.execute("""
-                    INSERT INTO peliculas 
-                    VALUES(?,?,?,?) """,
-                    (data['nombre'], data['genero'], data['año'], data['stock']))
-        
+                    INSERT INTO peliculas(IdPeliculas, Nombre, Genero, Año, Stock)
+                    VALUES(?,?,?,?,?) """,
+                    (data['IdPeliculas'],data['Nombre'], data['Genero'], data['anio'], data['Stock']))
+        conexion.commit()
         cursor.close()
         
         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
@@ -89,4 +98,4 @@ if __name__ == '__main__':
 
 
 
-listar_pelis()
+
