@@ -13,8 +13,9 @@ conexion = pymysql.connect(
     user="andres",              # Cambiar por el nombre de usuario de la base de datos
     password="LinUx&2023#",              # Cambiar por la contraseña de la base de datos
     database="CineCode"  # Cambiar por el nombre de la base de datos
-    
 )
+
+
 #-------------------------------------------------------------------
 @app.route('/consultar')
 def consultar_pelicula():
@@ -72,17 +73,18 @@ def agregar_pelicula():
     data = request.get_json()
     if 'Nombre' not in data or 'Genero' not in data or 'anio' not in data:
         return jsonify({'error': 'Falta uno o más campos requeridos'}), 400
-    print(data)
-    print(data['IdPeliculas'])
-    print(data['Nombre'])
-    print(data['Genero'])
-    print(data['anio'])
-    print(data['Stock'])
+    #print(data)
+    print(type(data))
+    # print(data['IdPeliculas'])
+    # print(data['Nombre'])
+    # print(data['Genero'])
+    # print(data['anio'])
+    # print(data['Stock'])
     try:
         cursor = conexion.cursor()
         cursor.execute("""
                     INSERT INTO peliculas(IdPeliculas, Nombre, Genero, Año, Stock)
-                    VALUES(?,?,?,?,?) """,
+                    VALUES(%s,%s,%s,%s,%s) """,
                     (data['IdPeliculas'],data['Nombre'], data['Genero'], data['anio'], data['Stock']))
         conexion.commit()
         cursor.close()
@@ -90,6 +92,62 @@ def agregar_pelicula():
         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
     except:
         return jsonify({'error': 'Error al dar de alta el producto'}), 500
+
+
+
+#------------------------------MODIFICAR----------------------------------------------------
+
+
+
+
+@app.route("/modificar", methods=['PUT'])
+
+def modificar_pelicula():
+    data = request.get_json()
+    
+    if 'Nombre' not in data or 'Genero' not in data or 'anio' not in data:
+        return jsonify({'error': 'Falta uno o más campos requeridos'}), 400
+    
+    #print(data)
+    print(type(data))
+    # print(data['IdPeliculas'])
+    # print(data['Nombre'])
+    # print(data['Genero'])
+    # print(data['anio'])
+    # print(data['Stock'])
+    
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("""
+                    INSERT INTO peliculas(IdPeliculas, Nombre, Genero, Año, Stock)
+                    VALUES(%s,%s,%s,%s,%s) """,
+                    (data['IdPeliculas'],data['Nombre'], data['Genero'], data['anio'], data['Stock']))
+        conexion.commit()
+        cursor.close()
+        
+        return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
+    except:
+        return jsonify({'error': 'Error al dar de alta el producto'}), 500
+
+
+
+
+
+
+#----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
