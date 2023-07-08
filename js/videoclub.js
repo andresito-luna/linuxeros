@@ -102,7 +102,7 @@ function rellenar(id) {
             //         document.querySelector("#agregaraño").innerText = element.anio
             //         document.querySelector("#agregarstock").innerText = element.Stock
             //     }
-            }); 
+            // }); 
         })
 }
 

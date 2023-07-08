@@ -48,7 +48,7 @@ def consultar_pelicula():
 def listar_pelis():
     try:
         cursor = conexion.cursor()
-        cursor.execute("SELECT * FROM peliculas")
+        cursor.execute("""SELECT * FROM peliculas""")
         pelis = cursor.fetchall()
         cursor.close()
         response = []
@@ -139,8 +139,8 @@ def modificar_pelicula():
 
 #-------------------------------------------------------------------
 
-@app.route('/editar/<codigo>')
-def consultar_pelicula(codigo):
+@app.route('/editar/<codigo>', methods=['GET'])
+def consultar2_pelicula(codigo):
     try:
         cursor = conexion.cursor()
         cursor.execute("""SELECT * FROM peliculas WHERE IdPeliculas = ?""",(codigo,))
