@@ -17,6 +17,7 @@ conexion = pymysql.connect(
 
 
 #-------------------------------------------------------------------
+
 @app.route('/consultar')
 def consultar_pelicula():
     try:
@@ -41,6 +42,8 @@ def consultar_pelicula():
         return jsonify("erroooooor")
 
 #----------------------------------------------------------------------------
+
+
 @app.route('/listar')
 def listar_pelis():
     try:
@@ -134,7 +137,19 @@ def modificar_pelicula():
 
 
 
-#----------------------------------------------------------------------------------
+#-------------------------------------------------------------------
+
+@app.route('/editar/<codigo>')
+def consultar_pelicula(codigo):
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("""SELECT * FROM peliculas WHERE IdPeliculas = ?""",(codigo,))
+        pelis = cursor.fetchone()
+        cursor.close()
+                
+        return jsonify(pelis)
+    except:
+        return jsonify("erroooooor")
 
 
 

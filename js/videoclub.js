@@ -17,7 +17,7 @@ const listar = () => {
                 const genero = item.Genero
                 const año = item.anio
                 const stock = item.Stock
-                const pelicula = `<tr><td>${id}</td><td>${nombre}</td><td>${genero}</td><td>${año}</td><td>${stock}</td><td><button id="${'editar' + String(id)}" onclick="rellenar(${id}, [${list_l}])">Editar</button></td></tr>`//genera una lista con los datos encontrados
+                const pelicula = `<tr><td>${id}</td><td>${nombre}</td><td>${genero}</td><td>${año}</td><td>${stock}</td><td><button id="${'editar' + String(id)}" onclick="rellenar(${nombre})">Editar</button></td></tr>`//genera una lista con los datos encontrados
                 contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
             })
         })
@@ -34,7 +34,7 @@ const consultar = () => {
             list_c.forEach(element => {
                 // console.log(element)
                 if (element.Nombre.trim() == nombrePeli) {
-                    const pelicula = `<tr><td>${element.IdPeliculas}</td><td>${element.Nombre}</td><td>${element.Genero}</td><td>${element.anio}</td><td>${element.Stock}</td><td><button id="${'editar' + String(element.IdPeliculas)}" onclick="rellenar(${element.IdPeliculas}, [${list_c}])">Editar</button></td></tr>`//genera una lista con los datos encontrados
+                    const pelicula = `<tr><td>${element.IdPeliculas}</td><td>${element.Nombre}</td><td>${element.Genero}</td><td>${element.anio}</td><td>${element.Stock}</td><td><button id="${'editar' + String(element.IdPeliculas)}" onclick="rellenar(${element.Nombre})">Editar</button></td></tr>`//genera una lista con los datos encontrados
                     contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
                 }
             }); 
@@ -87,10 +87,23 @@ document.getElementById('formulario').reset();
 //-------------------------------------------------------------
 
 
-function rellenar(id, bd) {
-    let base = bd
+function rellenar(id) {
+    fetch(URL + "editar/" + id )
+        .then(response => response.json())
+        .then(pelis => {
+            console.log(pelis)
 
-    return alert("todo mal")
+            // const list_r = pelis;
+            // list_r.forEach(element => {
+            //     if (element.Nombre.trim() == nombrePeli) {
+            //         document.querySelector("#agregarid").innerText = element.IdPeliculas
+            //         document.querySelector("#agregarnombre").innerText = element.Nombre
+            //         document.querySelector("#agregargenero").innerText = element.Genero
+            //         document.querySelector("#agregaraño").innerText = element.anio
+            //         document.querySelector("#agregarstock").innerText = element.Stock
+            //     }
+            }); 
+        })
 }
 
 
