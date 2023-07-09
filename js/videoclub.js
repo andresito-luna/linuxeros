@@ -1,11 +1,10 @@
 const URL = "http://127.0.0.1:5000/"
 const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
-// const botonagregar = document.querySelector("#formulario")
-
 const buscar = document.querySelector("#textoBuscar")
 
 const listar = () => {
+    document.getElementById('formulario').reset();
     contpelis.innerHTML = ""
     fetch(URL + "listar")
         .then(response => response.json())
@@ -25,6 +24,7 @@ const listar = () => {
 
 
 const consultar = () => {
+    document.getElementById('formulario').reset();
     contpelis.innerHTML = ""
     nombrePeli = buscar.value
     fetch(URL + "consultar")
@@ -47,12 +47,12 @@ const consultar = () => {
 
 document.getElementById('formulario').addEventListener('submit', function(event) {event.preventDefault();
 
-        const peliculasumar = {
-        IdPeliculas: document.querySelector("#agregarid").value,
-        Nombre: document.querySelector("#agregarnombre").value,
-        Genero: document.querySelector("#agregargenero").value,
-        anio: parseInt(document.querySelector("#agregaraño").value),
-        Stock: parseInt(document.querySelector("#agregarstock").value)
+    const peliculasumar = {
+    IdPeliculas: document.querySelector("#agregarid").value,
+    Nombre: document.querySelector("#agregarnombre").value,
+    Genero: document.querySelector("#agregargenero").value,
+    anio: parseInt(document.querySelector("#agregaraño").value),
+    Stock: parseInt(document.querySelector("#agregarstock").value)
     };
 
 
@@ -66,8 +66,6 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         .then(function (response) {
             return response.json();
         })
-
-
         .then(function (data) {
             alert('Pelicula agregada correctamente.');
             // console.log(data)
@@ -82,8 +80,6 @@ document.getElementById('formulario').reset();
 });
 
 
-
-
 //-------------------------------------------------------------
 
 
@@ -91,17 +87,59 @@ function rellenar(id) {
     fetch(URL + "editar/" + id)
         .then(response => response.json())
         .then(pelis => {
-                document.querySelector("#agregarid").value = pelis[0]
-                document.querySelector("#agregarnombre").value = pelis[1]
-                document.querySelector("#agregargenero").value = pelis[2]
-                document.querySelector("#agregaraño").value = pelis[3]
-                document.querySelector("#agregarstock").value = pelis[4]
-
+            document.querySelector("#agregarid").value = pelis[0]
+            document.querySelector("#agregarnombre").value = pelis[1]
+            document.querySelector("#agregargenero").value = pelis[2]
+            document.querySelector("#agregaraño").value = pelis[3]
+            document.querySelector("#agregarstock").value = pelis[4]
+            document.querySelector("#agregar_o_modificar_pelicula").setAttribute("type", "button")
+            document.querySelector("#agregar_o_modificar_pelicula").textContent = "Modificar"
         })
+
+    
+    let boton_agregar_o_modificar_pelicula = document.querySelector("#agregar_o_modificar_pelicula")
+
+
+    function modificar() {
+        
+        document.getElementById('formulario')
+
+        var pelicula_modificar = {
+            IdPeliculas: document.querySelector("#agregarid").value,
+            Nombre: document.querySelector("#agregarnombre").value,
+            Genero: document.querySelector("#agregargenero").value,
+            anio: parseInt(document.querySelector("#agregaraño").value),
+            Stock: parseInt(document.querySelector("#agregarstock").value)
+        };
+
+
+        fetch(URL + "modificar", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pelicula_modificar)
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                // Manejar la respuesta de la solicitud POST aquí
+            })
+            .catch( function (error) {
+                alert('Error al agregar la pelicula.');
+                // Manejar cualquier error que ocurra durante la solicitud
+            });
+
+
+    }
+
+    boton_agregar_o_modificar_pelicula.addEventListener("click", modificar);
+
+    document.getElementById('formulario').reset();
 }
 
 
-// botonagregar.addEventListener("submit", agregar);
 botonlistar.addEventListener("click", listar);
 botonbuscar.addEventListener("click", consultar);
 

@@ -102,42 +102,29 @@ def agregar_pelicula():
 
 
 
-
 @app.route("/modificar", methods=['PUT'])
 
 def modificar_pelicula():
     data = request.get_json()
-    
-    if 'Nombre' not in data or 'Genero' not in data or 'anio' not in data:
-        return jsonify({'error': 'Falta uno o más campos requeridos'}), 400
-    
-    #print(data)
-    print(type(data))
-    # print(data['IdPeliculas'])
-    # print(data['Nombre'])
-    # print(data['Genero'])
-    # print(data['anio'])
-    # print(data['Stock'])
-    
+    print(data)
     try:
         cursor = conexion.cursor()
         cursor.execute("""
-                    INSERT INTO peliculas(IdPeliculas, Nombre, Genero, Año, Stock)
-                    VALUES(%s,%s,%s,%s,%s) """,
-                    (data['IdPeliculas'],data['Nombre'], data['Genero'], data['anio'], data['Stock']))
+                    UPDATE peliculas (Nombre, Genero, Año, Stock)
+                    SET Nombre = "%s", Genero= "%s", anio = "%s", Stock = "%s" 
+                    WHERE IdPeliculas = %s """,
+                    (data['Nombre'], data['Genero'], data['anio'], data['Stock'], data['IdPeliculas']))
         conexion.commit()
         cursor.close()
-        
+
         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
     except:
         return jsonify({'error': 'Error al dar de alta el producto'}), 500
 
 
 
-
-
-
 #-------------------------------------------------------------------
+
 
 @app.route('/editar/<codigo>')
 def consultar2_pelicula(codigo):
@@ -153,22 +140,9 @@ def consultar2_pelicula(codigo):
 
 
 
-
-
-
-
-
-
-
-
-
 #----------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
 
     app.run(debug=True)
-
-
-
-
