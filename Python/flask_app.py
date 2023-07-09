@@ -139,11 +139,11 @@ def modificar_pelicula():
 
 #-------------------------------------------------------------------
 
-@app.route('/editar/<codigo>', methods=['GET'])
+@app.route('/editar/<codigo>')
 def consultar2_pelicula(codigo):
     try:
         cursor = conexion.cursor()
-        cursor.execute("""SELECT * FROM peliculas WHERE IdPeliculas = ?""",(codigo,))
+        cursor.execute("""SELECT * FROM peliculas WHERE IdPeliculas = %s""",(codigo,))
         pelis = cursor.fetchone()
         cursor.close()
                 
