@@ -71,6 +71,7 @@ def listar_pelis():
 
 #----------------------------------------------------------------------------------
 
+
 @app.route("/agregar", methods=['POST'])
 def agregar_pelicula():
     data = request.get_json()
@@ -110,14 +111,14 @@ def modificar_pelicula():
     try:
         cursor = conexion.cursor()
         cursor.execute("""
-                    UPDATE peliculas (Nombre, Genero, Año, Stock)
-                    SET Nombre = "%s", Genero= "%s", anio = "%s", Stock = "%s" 
+                    UPDATE peliculas
+                    SET Nombre = %s, Genero= %s, Año = %s, Stock = %s 
                     WHERE IdPeliculas = %s """,
                     (data['Nombre'], data['Genero'], data['anio'], data['Stock'], data['IdPeliculas']))
         conexion.commit()
         cursor.close()
-
         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
+    
     except:
         return jsonify({'error': 'Error al dar de alta el producto'}), 500
 
@@ -137,6 +138,47 @@ def consultar2_pelicula(codigo):
         return jsonify(pelis)
     except:
         return jsonify("erroooooor")
+
+
+#-------------------------------------------------------------------
+
+
+@app.route('/eliminar/<codigo>', methods=['DELETE'])
+def eliminar(codigo):
+    print(codigo)
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("""DELETE FROM peliculas WHERE IdPeliculas = %s""",(codigo,))
+        conexion.commit()
+        cursor.close()
+                
+        return jsonify("Pelicula Eliminada Correctamente")
+    except:
+        return jsonify("erroooooor")
+
+
+
+#     @app.route("/modificar", methods=['PUT'])
+
+# def modificar_pelicula():
+#     data = request.get_json()
+#     print(data)
+#     try:
+#         cursor = conexion.cursor()
+#         cursor.execute("""
+#                     UPDATE peliculas
+#                     SET Nombre = %s, Genero= %s, Año = %s, Stock = %s 
+#                     WHERE IdPeliculas = %s """,
+#                     (data['Nombre'], data['Genero'], data['anio'], data['Stock'], data['IdPeliculas']))
+#         conexion.commit()
+#         cursor.close()
+#         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
+    
+#     except:
+#         return jsonify({'error': 'Error al dar de alta el producto'}), 500
+
+
+
 
 
 

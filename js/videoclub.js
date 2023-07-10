@@ -3,7 +3,7 @@ const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
 const buscar = document.querySelector("#textoBuscar")
 
-const listar = () => {
+function listar() {
     document.getElementById('formulario').reset();
     contpelis.innerHTML = ""
     fetch(URL + "listar")
@@ -16,14 +16,14 @@ const listar = () => {
                 const genero = item.Genero
                 const año = item.anio
                 const stock = item.Stock
-                const pelicula = `<tr><td>${id}</td><td>${nombre}</td><td>${genero}</td><td>${año}</td><td>${stock}</td><td><button id="${'editar' + String(id)}" onclick="rellenar(${id})">Editar</button></td></tr>`//genera una lista con los datos encontrados
+                const pelicula = `<tr><td>${id}</td><td>${nombre}</td><td>${genero}</td><td>${año}</td><td>${stock}</td><td><button id="${'editar' + String(id)}" onclick="rellenar(${id})">Editar</button></td><td><button id="${'eliminar' + String(id)}" onclick="eliminar(${id})">Eliminar</button></td></tr>`//genera una lista con los datos encontrados
                 contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
             })
         })
 }
 
 
-const consultar = () => {
+function consultar() {
     document.getElementById('formulario').reset();
     contpelis.innerHTML = ""
     nombrePeli = buscar.value
@@ -34,7 +34,7 @@ const consultar = () => {
             list_c.forEach(element => {
                 // console.log(element)
                 if (element.Nombre.trim() == nombrePeli) {
-                    const pelicula = `<tr><td>${element.IdPeliculas}</td><td>${element.Nombre}</td><td>${element.Genero}</td><td>${element.anio}</td><td>${element.Stock}</td><td><button id="${'editar' + String(element.IdPeliculas)}" onclick="rellenar(${element.IdPeliculas})">Editar</button></td></tr>`//genera una lista con los datos encontrados
+                    const pelicula = `<tr><td>${element.IdPeliculas}</td><td>${element.Nombre}</td><td>${element.Genero}</td><td>${element.anio}</td><td>${element.Stock}</td><td><button id="${'editar' + String(element.IdPeliculas)}" onclick="rellenar(${element.IdPeliculas})">Editar</button></td><td><button id="${'eliminar' + String(element.IdPeliculas)}" onclick="eliminar(${element.IdPeliculas})">Eliminar</button></td></tr>`//genera una lista con los datos encontrados
                     contpelis.innerHTML += pelicula //inserta la lista en la trabla con el id busqueda
                 }
             }); 
@@ -68,6 +68,7 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         })
         .then(function (data) {
             alert('Pelicula agregada correctamente.');
+            listar();
             // console.log(data)
             // Manejar la respuesta de la solicitud POST aquí
         })
@@ -96,12 +97,10 @@ function rellenar(id) {
             document.querySelector("#agregar_o_modificar_pelicula").textContent = "Modificar"
         })
 
-    
     let boton_agregar_o_modificar_pelicula = document.querySelector("#agregar_o_modificar_pelicula")
 
 
     function modificar() {
-        
         document.getElementById('formulario')
 
         var pelicula_modificar = {
@@ -124,20 +123,52 @@ function rellenar(id) {
                 return response.json();
             })
             .then(function (data) {
-                // Manejar la respuesta de la solicitud POST aquí
+                alert("Pelicula Modificada Correctamente")
+                listar()
             })
             .catch( function (error) {
                 alert('Error al agregar la pelicula.');
                 // Manejar cualquier error que ocurra durante la solicitud
             });
-
-
     }
 
     boton_agregar_o_modificar_pelicula.addEventListener("click", modificar);
 
+    
+
     document.getElementById('formulario').reset();
 }
+
+
+//------------------------ELIMINAR-------------------------------------
+
+function eliminar(id) {
+    console.log(id)
+    fetch(URL + "eliminar/" + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'},
+        body: JSON.stringify(id)
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            alert("Pelicula Eliminada Correctamente")
+            listar()
+        })
+        .catch( function (error) {
+            alert('Error al eliminar la pelicula.');
+            // Manejar cualquier error que ocurra durante la solicitud
+        });
+}
+
+
+
+
+
+
+
 
 
 botonlistar.addEventListener("click", listar);

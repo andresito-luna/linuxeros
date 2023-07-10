@@ -62,3 +62,6 @@ COMMIT;
 
 SELECT * FROM `peliculas`;
 
+UPDATE peliculas
+SET Nombre = "Hola2", Genero= "tarolas2", Año = 2022, Stock = 15 
+WHERE IdPeliculas = 2
