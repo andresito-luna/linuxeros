@@ -1,4 +1,4 @@
-const URL = "http://127.0.0.1:5000/"
+const URL = "http://54.207.156.175/"
 const botonlistar = document.querySelector("#botonlistar")
 const botonbuscar = document.querySelector("#botonbuscar")
 const buscar = document.querySelector("#textoBuscar")
