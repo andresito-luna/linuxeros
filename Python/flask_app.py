@@ -1,5 +1,5 @@
 import pymysql
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
 # Nombre del objeto flask.
@@ -15,8 +15,13 @@ conexion = pymysql.connect(
     database="CineCode"  # Cambiar por el nombre de la base de datos
 )
 
+@app.route("/")
+def homepage():
+    return render_template("flask.html")
 
-#-------------------------------------------------------------------
+
+
+#----------------------------CONSULTAR---------------------------------------
 
 @app.route('/consultar')
 def consultar_pelicula():
@@ -41,7 +46,7 @@ def consultar_pelicula():
     except:
         return jsonify("erroooooor")
 
-#----------------------------------------------------------------------------
+#-----------------------------LISTAR-----------------------------------------------
 
 
 @app.route('/listar')
@@ -69,7 +74,7 @@ def listar_pelis():
         return jsonify("erroooooor")
     
 
-#----------------------------------------------------------------------------------
+#--------------------------------AGREGAR--------------------------------------------------
 
 
 @app.route("/agregar", methods=['POST'])
@@ -124,7 +129,7 @@ def modificar_pelicula():
 
 
 
-#-------------------------------------------------------------------
+#---------------------------------EDITAR----------------------------------
 
 
 @app.route('/editar/<codigo>')
@@ -140,7 +145,7 @@ def consultar2_pelicula(codigo):
         return jsonify("erroooooor")
 
 
-#-------------------------------------------------------------------
+#-----------------------------------ELIMINAR--------------------------------
 
 
 @app.route('/eliminar/<codigo>', methods=['DELETE'])
@@ -157,34 +162,8 @@ def eliminar(codigo):
         return jsonify("erroooooor")
 
 
-
-#     @app.route("/modificar", methods=['PUT'])
-
-# def modificar_pelicula():
-#     data = request.get_json()
-#     print(data)
-#     try:
-#         cursor = conexion.cursor()
-#         cursor.execute("""
-#                     UPDATE peliculas
-#                     SET Nombre = %s, Genero= %s, Año = %s, Stock = %s 
-#                     WHERE IdPeliculas = %s """,
-#                     (data['Nombre'], data['Genero'], data['anio'], data['Stock'], data['IdPeliculas']))
-#         conexion.commit()
-#         cursor.close()
-#         return jsonify({'mensaje': 'Alta efectuada correctamente'}), 201
-    
-#     except:
-#         return jsonify({'error': 'Error al dar de alta el producto'}), 500
-
-
-
-
-
-
 #----------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
-
     app.run(debug=True)
