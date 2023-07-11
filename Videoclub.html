@@ -20,7 +20,7 @@
 
     <!-- =========== header - Ramiro ============== -->
 
-    <div class="contenedor">
+    <div class="contenedorvideoclub">
         <header>
             <div class="rb__logo">
                 <img src="claqueta.png" alt="Logo de la compañia" class="rb__logo-img">
@@ -31,24 +31,52 @@
                 <a href="buscar.html" class="rb__nav-link">Buscar</a>
                 <a href="videos.html" class="rb__nav-link">Videos</a>
                 <a href="contacto.html" class="rb__nav-link">Contacto</a>
-                <a href="loguear.html" class="rb__nav-link">Registrarse</a>
+                <a href="Videoclub.html" class="rb__nav-link">90's Videoclub</a>
             </nav>
         </header>
         
-        <!-- <header class="header">
-           <img src="claqueta.png" alt="logo de la página" class="logo"/>
-            <ul>
-                <li><a href="index.html">INICIO</a></li>
-                <li><a href="criticas.html">CRITICAS</a></li>
-                <li><a href="videos.html">VIDEOS</a></li>
-                <li><a href="contacto.html">CONTACTO</a></li>
-                <li><a href="loguear.html">LOG</a></li>
-                
-            </ul>
-        </header> -->
-       
-        <p>en construccion</p>
 
+        <div class="divbotones"><button id="botonbuscar">Buscar por Nombre</button>
+        <input id="textoBuscar" type="text" placeholder="Nombre de Pelicula">   
+        <button id="botonlistar">Listar Todo el Catalogo</button></div>
+        <div class="divtabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Genero</th>
+                        <th>Año</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+            <tbody id="contpelis"></tbody>
+            </table>
+        </div>
+
+        <div class="divform"><form id="formulario">
+            <label for="id">Codigo:</label>
+            <input type="number" id="agregarid" name="id" required>
+            <br>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="agregarnombre" name="nombre" required>
+            <br>
+            <label for="genero">Género:</label>
+            <input type="text" id="agregargenero" name="genero" required>
+            <br>
+            <label for="año">Año:</label>
+            <input type="number" id="agregaraño" name="año" required>
+            <br>
+            
+            <label for="stock">Stock:</label>
+            <input type="number" id="agregarstock" name="stock" required>
+            <br>
+            <button id="agregar_o_modificar_pelicula" type="submit">Agregar película</button>
+        </form></div>
+
+
+        
+            
         <footer class="futer">
             <div class="futer__flexbox">
                 <div class="futer__logo__repo" >
@@ -57,7 +85,7 @@
                     </a>
                 </div>
 
-                
+                <script src="/js/videoclub.js"></script>
                     <div class="futer__grupo">
                         <p>Grupo: Linuxeros | @2023</p>
                     </div>

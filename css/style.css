@@ -25,6 +25,64 @@
     overflow: auto;
 }
 
+.contenedorvideoclub {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    grid-template-areas:
+        "header header"
+        "botones botones"
+        "tabla form"
+       
+        "futer futer";
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+    margin: 20px auto;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+    grid-auto-flow: column;
+    overflow: auto;
+}
+
+.divbotones {
+
+    grid-area: botones;
+}
+
+.divtabla{
+
+    grid-area: tabla;
+    border-color: black;
+    border-width: 2px;
+    border-style: dashed;
+    padding: 10px;
+    background-color: rgba(255, 210, 105, 0.25);
+    border-radius: 15px;
+}
+
+.divform{
+
+    grid-area: form;
+    border-color: black;
+    border-width: 2px;
+    border-style: dashed;
+    padding: 10px;
+    background-color: rgba(255, 210, 105, 0.25);
+    border-radius: 15px;
+}
+
+.catalogo{
+    grid-area: catalogo;
+    border-color: black;
+    border-width: 2px;
+    border-style: dashed;
+    padding: 10px;
+    background-color: rgba(255, 210, 105, 0.25);
+    border-radius: 15px;
+}
+
 
 header{
     grid-area: header;
@@ -491,7 +549,7 @@ ul li a:hover {
     }
     .busc{display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(50, 1fr);
+        grid-template-rows: repeat(auto, 1fr);
        grid-area: busc;
         
         margin: auto;
